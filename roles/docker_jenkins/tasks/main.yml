@@ -1,0 +1,15 @@
+---
+# tasks file for docker_jenkins
+  - meta: flush_handlers
+
+  - name: Replace docker config
+    ansible.builtin.lineinfile:
+      path: "{{ docker_svc_path }}/docker.service"
+      regexp: '^ExecStart=/usr/bin/dockerd'
+      line: ExecStart=/usr/bin/dockerd -H tcp://0.0.0.0:4243 -H unix:///var/run/docker.sock
+      owner: root
+      group: root
+      mode: '0644'
+      backup: yes
+    notify:
+    - docker_svc

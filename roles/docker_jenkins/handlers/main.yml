@@ -1,0 +1,12 @@
+---
+# handlers file for docker_jenkins
+- name: docker_svc
+  ansible.builtin.service:
+    name: docker
+    state: reloaded
+
+- name: docker_svc         
+  ansible.builtin.service:
+    name: docker                                     
+    state: restarted 
+
